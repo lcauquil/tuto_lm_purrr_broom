@@ -2,6 +2,5 @@
 
 Exemple d'analyse des résultats d'un modèle linéaire mixte à l'aide des packages `purrr`et `broom.mixed`
 
-https://lcauquil.github.io/tuto_lm_purrr_broom/tuto_lm_purrr_broom.html
+[Tutoriel](https://lcauquil.github.io/tuto_lm_purrr_broom/tuto_lm_purrr_broom.html)
 
-[markdown](https://github.com/lcauquil/tuto_lm_purrr_broom/blob/main/tuto_lm_purrr_broom.md)
