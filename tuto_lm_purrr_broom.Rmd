@@ -1,13 +1,14 @@
 ---
 author : "L. Cauquil"
 title: "Modèle linéaire mixte avec les packages purrr et broom.mixed"
-date: "26-01-20222"
+date: "26-01-2022"
 output:
   html_document: 
     code_folding: show
     toc: yes
     toc_float: yes
     keep_md: TRUE
+    css: style.css
   pdf_document:
     toc: yes
   word_document:
@@ -48,7 +49,7 @@ library(emmeans)
 ## Présentation des tables
 library(DT)
 library(flextable)
-library(xlsx)
+# library(xlsx)
 ```
 
 ### **Importation des données**
@@ -216,7 +217,7 @@ rm(x)
 
 La fonction `split()` sépare un data.frame en liste à partir des différents niveaux d'une variable
  
-```{r}
+```{r, class.output = "scroll-300"}
 split(df_stat, df_stat$phylum)
 ```
 
@@ -270,7 +271,7 @@ tidy(result$Firmicutes)
 
 Appliqué à tous les phyla
 
-```{r}
+```{r, class.output = "scroll-300"}
 result_model <- df_stat |>
   split(df_stat$phylum) |> 
   map(fit_model) |> 
@@ -379,11 +380,15 @@ df_letters
 left_join(df_shap, df_pval) |> 
   left_join(df_letters) -> full_result
 full_result
-datatable(full_result)
+full_result |> 
+  mutate(across(where(is.double), ~round(.x,4))) |> 
+  datatable()
 ```
 
 ```{r}
-flextable(full_result) -> tab 
+full_result |> 
+  mutate(across(where(is.double), ~round(.x,4))) |> 
+  flextable() -> tab 
   theme_vanilla(tab)
 ```
 
